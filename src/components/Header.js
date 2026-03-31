@@ -89,7 +89,7 @@ const Header = () => {
                   onClick={() => setIsOpen(false)}
                   className={`block py-3 text-sm font-medium transition-colors hover:text-primary ${
                     pathname === item.href
-                      ? 'text-[#002B5C]'
+                      ? 'text-blue-950'
                       : 'text-gray-700'
                   }`}
                 >
