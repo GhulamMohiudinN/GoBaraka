@@ -80,7 +80,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-white shadow-lg border-t">
+          <div className="lg:hidden absolute top-full left-0 right-0 bg-white shadow-lg">
             <div className="container-custom py-4">
               {navigation.map((item) => (
                 <Link
@@ -89,7 +89,7 @@ const Header = () => {
                   onClick={() => setIsOpen(false)}
                   className={`block py-3 text-sm font-medium transition-colors hover:text-primary ${
                     pathname === item.href
-                      ? 'text-primary'
+                      ? 'text-[#002B5C]'
                       : 'text-gray-700'
                   }`}
                 >

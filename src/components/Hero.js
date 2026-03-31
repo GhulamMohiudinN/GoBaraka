@@ -63,7 +63,7 @@ const Hero = () => {
           <div className="mt-10 flex gap-6 animate-slide-up animation-delay-1000">
             <Link
               href="/portfolio"
-              className="inline-flex items-center px-8 py-3 bg-white text-primary-dark font-semibold rounded-lg hover:bg-gray-100 transition-colors group"
+              className="inline-flex items-center px-2 lg:px-8 py-3 bg-white text-primary-dark font-semibold rounded-lg hover:bg-gray-100 transition-colors group"
             >
               View Portfolio
               <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
@@ -71,7 +71,7 @@ const Hero = () => {
 
             <Link
               href="/contact"
-              className="inline-flex items-center px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-primary-dark transition-colors"
+              className="inline-flex items-center px-2 lg:px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-primary-dark transition-colors"
             >
               Contact Us
             </Link>

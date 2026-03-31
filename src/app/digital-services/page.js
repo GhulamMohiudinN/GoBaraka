@@ -25,7 +25,7 @@ const DigitalServices = () => {
   ];
 
   return (
-    <div className="pt-16">
+    <div className="">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary-dark to-primary text-white py-20">
         <div className="container-custom">
