@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FiMenu, FiX } from 'react-icons/fi';
-import logo from '@/assests/logo.jpeg';
+import logo from '@/assests/logo.png';
 import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 
