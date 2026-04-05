@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FiMenu, FiX } from 'react-icons/fi';
-import logo from '@/assests/logo.png';
+import logo from '@/assests/logo.jpeg';
 import Image from 'next/image';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,17 +21,19 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const { language, setLanguage, t } = useLanguage();
+
   const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Logistics', href: '/logistics' },
-    { name: 'Transport', href: '/transport' },
-    { name: 'Tourism', href: '/tourism' },
-    { name: 'Trading', href: '/trading' },
-    { name: 'Digital Services', href: '/digital-services' },
-    { name: 'Crypto', href: '/crypto' },
-    { name: 'Portfolio', href: '/portfolio' },
-    { name: 'Contact', href: '/contact' },
+    { name: t.nav.home, href: '/' },
+    { name: t.nav.about, href: '/about' },
+    { name: t.nav.logistics, href: '/logistics' },
+    { name: t.nav.transport, href: '/transport' },
+    { name: t.nav.tourism, href: '/tourism' },
+    { name: t.nav.trading, href: '/trading' },
+    { name: t.nav.digitalServices, href: '/digital-services' },
+    { name: t.nav.crypto, href: '/crypto' },
+    { name: t.nav.portfolio, href: '/portfolio' },
+    { name: t.nav.contact, href: '/contact' },
   ];
 
   return (
@@ -44,7 +47,7 @@ const Header = () => {
       <nav className="container-custom ">
         <div className="flex justify-between items-center ">
           {/* Logo */}
-          <Link href="/" className="">
+          <Link href="/" className="mt-1">
             {/* <div className="w-10 h-10 bg-primary-dark rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-xl">GB</span>
             </div>
@@ -67,6 +70,16 @@ const Header = () => {
                 {item.name}
               </Link>
             ))}
+          </div>
+
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setLanguage(language === 'en' ? 'fr' : 'en')}
+              title={t.header.switchTitle}
+              className="px-3 py-2 rounded-full border border-primary bg-white text-primary-dark font-semibold transition-colors hover:bg-primary hover:text-white"
+            >
+              {t.header.switchLabel}
+            </button>
           </div>
 
           {/* Mobile Menu Button */}

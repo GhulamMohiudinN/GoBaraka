@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { FiArrowRight } from 'react-icons/fi';
 
-const SectorCard = ({ title, description, icon, href, color }) => {
+const SectorCard = ({ title, description, icon, href, color, buttonText = 'Learn More' }) => {
   return (
     <div className="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100">
       <div className="p-6">
@@ -21,7 +21,7 @@ const SectorCard = ({ title, description, icon, href, color }) => {
           href={href}
           className="inline-flex items-center text-primary hover:text-primary-light font-medium transition-colors"
         >
-          Learn More
+          {buttonText}
           <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
         </Link>
       </div>

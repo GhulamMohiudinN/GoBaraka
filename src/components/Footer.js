@@ -1,18 +1,25 @@
+'use client';
+
 import Link from 'next/link';
 import { FiMapPin, FiPhone, FiMail, FiClock } from 'react-icons/fi';
+import { useLanguage } from '@/context/LanguageContext';
+import logo from '@/assests/logo.jpeg';
+import Image from 'next/image';
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Logistics', href: '/logistics' },
-    { name: 'Transport', href: '/transport' },
-    { name: 'Tourism', href: '/tourism' },
-    { name: 'Trading', href: '/trading' },
-    { name: 'Digital Services', href: '/digital-services' },
-    { name: 'Crypto', href: '/crypto' },
-    { name: 'Portfolio', href: '/portfolio' },
-    { name: 'Contact', href: '/contact' },
+    { name: t.nav.home, href: '/' },
+    { name: t.nav.about, href: '/about' },
+    { name: t.nav.logistics, href: '/logistics' },
+    { name: t.nav.transport, href: '/transport' },
+    { name: t.nav.tourism, href: '/tourism' },
+    { name: t.nav.trading, href: '/trading' },
+    { name: t.nav.digitalServices, href: '/digital-services' },
+    { name: t.nav.crypto, href: '/crypto' },
+    { name: t.nav.portfolio, href: '/portfolio' },
+    { name: t.nav.contact, href: '/contact' },
   ];
 
   return (
@@ -22,9 +29,9 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+              {/* <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
                 <span className="text-primary-dark font-bold text-xl">GB</span>
-              </div>
+              </div> */}
               <span className="text-xl font-bold">Go Baraka Sarl</span>
             </div>
             <p className="text-gray-300 text-sm">
@@ -34,7 +41,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4">{t.footer.quickLinks}</h3>
             <ul className="space-y-2">
               {navigation.map((item) => (
                 <li key={item.name}>
@@ -70,12 +77,12 @@ const Footer = () => {
 
           {/* Business Hours */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Our Commitment</h3>
+            <h3 className="text-lg font-semibold mb-4">{t.footer.ourCommitment}</h3>
             <p className="text-gray-300 text-sm mb-2">
-              Delivering excellence across all our business verticals with a focus on growth and innovation.
+              {t.footer.commitmentText}
             </p>
             <p className="text-gray-300 text-sm">
-              We're building sustainable partnerships for long-term success.
+              {t.footer.companySummary}
             </p>
           </div>
         </div>

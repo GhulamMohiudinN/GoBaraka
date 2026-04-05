@@ -3,8 +3,10 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { FiArrowRight } from 'react-icons/fi';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Hero = () => {
+  const { t } = useLanguage();
   const heroRef = useRef(null);
 
   useEffect(() => {
@@ -35,28 +37,27 @@ const Hero = () => {
         <div className="max-w-4xl">
           {/* Small Label */}
           <p className="text-sm tracking-widest text-blue-200 mb-6 uppercase border-l-4 border-white pl-4 animate-slide-up">
-            What We Do
+            {t.hero.label}
           </p>
 
           {/* Main Heading */}
           <h1 className="leading-tight">
             <span className="block text-4xl md:text-6xl font-light text-white/90 tracking-wide animate-slide-up animation-delay-200">
-              Investing For
+              {t.hero.line1}
             </span>
 
             <span className="block text-5xl md:text-7xl font-bold text-white tracking-tight animate-slide-up animation-delay-400">
-              Go Baraka's
+              {t.hero.line2}
             </span>
 
             <span className="block text-4xl md:text-6xl font-light text-white/90 tracking-wide animate-slide-up animation-delay-600">
-              Economic Growth
+              {t.hero.line3}
             </span>
           </h1>
 
           {/* Description */}
           <p className="mt-8 text-lg text-white/80 max-w-2xl animate-slide-up animation-delay-800">
-            A diversified business group building long-term value through strategic
-            investments in logistics, transport, tourism, trading, and digital innovation.
+            {t.hero.description}
           </p>
 
           {/* Buttons */}
@@ -65,7 +66,7 @@ const Hero = () => {
               href="/portfolio"
               className="inline-flex items-center px-2 lg:px-8 py-3 bg-white text-primary-dark font-semibold rounded-lg hover:bg-gray-100 transition-colors group"
             >
-              View Portfolio
+              {t.hero.portfolioButton}
               <FiArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
             </Link>
 
@@ -73,7 +74,7 @@ const Hero = () => {
               href="/contact"
               className="inline-flex items-center px-2 lg:px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-primary-dark transition-colors"
             >
-              Contact Us
+              {t.hero.contactButton}
             </Link>
           </div>
         </div>
