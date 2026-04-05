@@ -33,6 +33,7 @@ const Header = () => {
     { name: t.nav.digitalServices, href: '/digital-services' },
     { name: t.nav.crypto, href: '/crypto' },
     { name: t.nav.portfolio, href: '/portfolio' },
+    { name: t.nav.careers, href: '/careers' },
     { name: t.nav.contact, href: '/contact' },
   ];
 

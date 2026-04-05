@@ -12,6 +12,7 @@ const translations = {
       digitalServices: 'Digital Services',
       crypto: 'Crypto',
       portfolio: 'Portfolio',
+      careers: 'Careers',
       contact: 'Contact',
     },
     header: {
@@ -244,6 +245,165 @@ const translations = {
       technologyDescription: 'We work with cutting-edge technologies to deliver robust, scalable, and future-proof solutions.',
       technologyList: ['React', 'Next.js', 'Node.js', 'Python', 'AWS', 'MongoDB', 'PostgreSQL', 'Tailwind'],
     },
+
+    careers: {
+      heroLabel: 'Join Our Team',
+      heroTitle: 'Build Your Career With Us',
+      heroDescription: 'Join a dynamic team where innovation meets excellence. We are looking for talented individuals to help shape the future of our diverse business sectors.',
+      exploreLabel: 'Explore',
+      whyTitle: 'Why Join Go Baraka?',
+      whySubtitle: 'We offer more than just a job — we offer a career with purpose and growth.',
+      currentOpportunitiesLabel: 'Current Opportunities',
+      openPositionsTitle: 'Open Positions',
+      openPositionsDescription: 'Find your perfect role and join our growing team.',
+      keyRequirementsTitle: 'Key Requirements',
+      applyNow: 'Apply Now',
+      cultureSectionLabel: 'Our Culture',
+      lifeTitle: 'Life at Go Baraka',
+      lifeDescription: 'We believe in creating an environment where everyone can thrive.',
+      callToAction: "Don't see the perfect role? We're always looking for talented individuals.",
+      generalApplicationButton: 'Send General Application',
+      jobs: [
+        {
+          title: 'Senior Logistics Coordinator',
+          department: 'Logistics',
+          location: 'Casablanca, Morocco',
+          type: 'Full-time',
+          salary: 'Competitive',
+          experience: '5+ years',
+          description: 'Manage supply chain operations and ensure efficient delivery of goods across our network.',
+          requirements: [
+            'Bachelor’s degree in Logistics or related field',
+            '5+ years of experience in logistics coordination',
+            'Excellent communication and problem-solving skills',
+            'Proficiency in logistics software',
+            'Fluent in English and French'
+          ]
+        },
+        {
+          title: 'Transport Operations Manager',
+          department: 'Transport',
+          location: 'Tangier, Morocco',
+          type: 'Full-time',
+          salary: 'Negotiable',
+          experience: '7+ years',
+          description: 'Lead transport operations to optimize routes, manage fleet, and ensure timely deliveries.',
+          requirements: [
+            'Master’s degree in Supply Chain Management',
+            '7+ years in transport management',
+            'Strong leadership and analytical skills',
+            'Knowledge of transport regulations',
+            'Fleet management experience'
+          ]
+        },
+        {
+          title: 'Tourism Experience Designer',
+          department: 'Tourism',
+          location: 'Marrakech, Morocco',
+          type: 'Full-time',
+          salary: 'Competitive',
+          experience: '3+ years',
+          description: 'Create unique travel experiences and customize tours for business and leisure clients.',
+          requirements: [
+            'Degree in Tourism or Hospitality',
+            '3+ years in tour design',
+            'Excellent knowledge of Moroccan tourism',
+            'Creative and detail-oriented',
+            'Multiple language proficiency'
+          ]
+        },
+        {
+          title: 'Commodities Trading Specialist',
+          department: 'Trading',
+          location: 'Dubai, UAE',
+          type: 'Full-time',
+          salary: 'High',
+          experience: '5+ years',
+          description: 'Execute commodity trades, analyze market trends, and develop trading strategies.',
+          requirements: [
+            'Finance or Economics degree',
+            '5+ years in commodities trading',
+            'Strong analytical and risk management skills',
+            'Knowledge of global markets',
+            'Trading certifications preferred'
+          ]
+        },
+        {
+          title: 'Full Stack Developer',
+          department: 'Digital Services',
+          location: 'Remote',
+          type: 'Full-time',
+          salary: 'Competitive',
+          experience: '3+ years',
+          description: 'Develop and maintain web applications for digital transformation projects.',
+          requirements: [
+            'Computer Science degree or equivalent',
+            '3+ years with React/Node.js',
+            'Experience with databases and APIs',
+            'Strong problem-solving skills',
+            'Portfolio of previous work'
+          ]
+        },
+        {
+          title: 'Blockchain Developer',
+          department: 'Crypto',
+          location: 'Remote',
+          type: 'Full-time',
+          salary: 'High',
+          experience: '2+ years',
+          description: 'Build smart contracts, deploy blockchain solutions, and work on crypto innovation projects.',
+          requirements: [
+            'Strong knowledge of blockchain technology',
+            'Experience with Solidity and Web3',
+            'Understanding of DeFi and NFTs',
+            'Problem-solving mindset',
+            'GitHub portfolio required'
+          ]
+        }
+      ],
+      culturePoints: [
+        {
+          title: 'Innovation First',
+          description: 'We encourage creative thinking and embrace new technologies to stay ahead.'
+        },
+        {
+          title: 'Work-Life Balance',
+          description: 'Flexible hours, remote options, and a supportive environment for personal growth.'
+        },
+        {
+          title: 'Continuous Learning',
+          description: 'Regular training, workshops, and learning budgets for professional development.'
+        },
+        {
+          title: 'Collaborative Culture',
+          description: 'Team-oriented environment with open communication and mutual respect.'
+        }
+      ],
+      form: {
+        applyFor: 'Apply for',
+        departmentLocation: '{department} • {location}',
+        fullName: 'Full Name *',
+        email: 'Email *',
+        phone: 'Phone *',
+        experience: 'Years of Experience *',
+        coverLetter: 'Cover Letter *',
+        resume: 'Resume/CV *',
+        resumeHelp: 'PDF, DOC, or DOCX (Max 5MB)',
+        submit: 'Submit Application',
+        submitting: 'Submitting...',
+        success: 'Application submitted successfully! We will review and get back to you soon.',
+        placeholders: {
+          fullName: 'John Doe',
+          email: 'john@example.com',
+          phone: '+212 XXX XXX XXX',
+          experience: 'Select experience',
+          coverLetter: "Tell us why you're the perfect fit..."
+        }
+      },
+      generalApplication: 'General Application',
+      futureOpportunities: 'Future Opportunities',
+      flexible: 'Flexible'
+    },
     crypto: {
       heroTitle: 'Crypto & Innovation',
       heroDescription: 'Exploring the future of finance through blockchain technology and digital assets.',
@@ -300,8 +460,8 @@ const translations = {
       heroDescription: 'Get in touch with us to discuss investment opportunities or learn more about our business sectors.',
       contactTitle: 'Get In Touch',
       contactInfo: [
-        { title: 'Address', details: ['Go Baraka Sarl', 'Hann Mariste C26', 'Dakar Sénégal'], link: null },
-        { title: 'Phone', details: ['77 2043677'], link: 'tel:772043677' },
+        { title: 'Address', details: ['Go Baraka Sarl', 'NINEA 012905686', 'Dakar Sénégal'], link: null },
+        { title: 'Phone', details: ['77 2043677'], link: 'tel:766478365' },
         { title: 'Email', details: ['info@al-r.com'], link: 'mailto:info@al-r.com' },
         { title: 'Business Hours', details: ['Monday - Friday: 9:00 - 18:00', 'Saturday - Sunday: Closed'], link: null },
       ],
@@ -336,6 +496,7 @@ const translations = {
       crypto: 'Crypto',
       portfolio: 'Portefeuille',
       contact: 'Contact',
+      careers: 'Carrières',
     },
     header: {
       switchLabel: 'EN',
@@ -357,6 +518,164 @@ const translations = {
       description: 'Un groupe d’entreprises diversifié construisant de la valeur à long terme grâce à des investissements stratégiques dans la logistique, le transport, le tourisme, le commerce et l’innovation numérique.',
       portfolioButton: 'Voir le portefeuille',
       contactButton: 'Contactez-nous',
+    },
+    careers: {
+      heroLabel: 'Rejoignez notre équipe',
+      heroTitle: 'Construisez votre carrière avec nous',
+      heroDescription: 'Rejoignez une équipe dynamique où l’innovation rencontre l’excellence. Nous recherchons des talents pour façonner l’avenir de nos secteurs d’activité diversifiés.',
+      exploreLabel: 'Explorez',
+      whyTitle: 'Pourquoi rejoindre Go Baraka ?',
+      whySubtitle: 'Nous offrons plus qu’un emploi — nous offrons une carrière avec du sens et de la croissance.',
+      currentOpportunitiesLabel: 'Opportunités actuelles',
+      openPositionsTitle: 'Postes ouverts',
+      openPositionsDescription: 'Trouvez le rôle idéal et rejoignez notre équipe en croissance.',
+      keyRequirementsTitle: 'Exigences clés',
+      applyNow: 'Postuler',
+      cultureSectionLabel: 'Notre culture',
+      lifeTitle: 'La vie chez Go Baraka',
+      lifeDescription: 'Nous croyons en un environnement où chacun peut s’épanouir.',
+      callToAction: "Vous ne trouvez pas le poste parfait ? Nous sommes toujours à la recherche de talents.",
+      generalApplicationButton: 'Envoyer une candidature générale',
+      jobs: [
+        {
+          title: 'Coordinateur logistique senior',
+          department: 'Logistique',
+          location: 'Casablanca, Maroc',
+          type: 'Temps plein',
+          salary: 'Compétitif',
+          experience: '5+ ans',
+          description: 'Gérez les opérations de la chaîne d’approvisionnement et assurez la livraison efficace des marchandises.',
+          requirements: [
+            'Bac+3 en logistique ou domaine similaire',
+            '5+ ans d’expérience en coordination logistique',
+            'Excellentes compétences en communication et résolution de problèmes',
+            'Maîtrise des logiciels logistiques',
+            'Français et anglais courants'
+          ]
+        },
+        {
+          title: 'Responsable des opérations de transport',
+          department: 'Transport',
+          location: 'Tanger, Maroc',
+          type: 'Temps plein',
+          salary: 'Négociable',
+          experience: '7+ ans',
+          description: 'Dirigez les opérations de transport pour optimiser les itinéraires, gérer la flotte et garantir des livraisons ponctuelles.',
+          requirements: [
+            'Master en gestion de la chaîne d’approvisionnement',
+            '7+ ans en gestion du transport',
+            'Solides compétences en leadership et en analyse',
+            'Connaissance de la réglementation du transport',
+            'Expérience en gestion de flotte'
+          ]
+        },
+        {
+          title: 'Concepteur d’expériences touristiques',
+          department: 'Tourisme',
+          location: 'Marrakech, Maroc',
+          type: 'Temps plein',
+          salary: 'Compétitif',
+          experience: '3+ ans',
+          description: 'Créez des expériences de voyage uniques et personnalisez des circuits pour les clients professionnels et de loisirs.',
+          requirements: [
+            'Diplôme en tourisme ou hôtellerie',
+            '3+ ans en conception de circuits',
+            'Excellente connaissance du tourisme marocain',
+            'Créatif et attentif aux détails',
+            'Maîtrise de plusieurs langues'
+          ]
+        },
+        {
+          title: 'Spécialiste en trading de matières premières',
+          department: 'Commerce',
+          location: 'Dubaï, EAU',
+          type: 'Temps plein',
+          salary: 'Élevé',
+          experience: '5+ ans',
+          description: 'Exécutez des transactions de matières premières, analysez les tendances du marché et développez des stratégies de trading.',
+          requirements: [
+            'Diplôme en finance ou économie',
+            '5+ ans en trading de matières premières',
+            'Solides compétences analytiques et en gestion des risques',
+            'Connaissance des marchés mondiaux',
+            'Certifications en trading souhaitées'
+          ]
+        },
+        {
+          title: 'Développeur Full Stack',
+          department: 'Services numériques',
+          location: 'À distance',
+          type: 'Temps plein',
+          salary: 'Compétitif',
+          experience: '3+ ans',
+          description: 'Développez et maintenez des applications web pour des projets de transformation numérique.',
+          requirements: [
+            'Diplôme en informatique ou équivalent',
+            '3+ ans avec React/Node.js',
+            'Expérience avec bases de données et API',
+            'Solides compétences en résolution de problèmes',
+            'Portfolio de travaux antérieurs'
+          ]
+        },
+        {
+          title: 'Développeur Blockchain',
+          department: 'Crypto',
+          location: 'À distance',
+          type: 'Temps plein',
+          salary: 'Élevé',
+          experience: '2+ ans',
+          description: 'Créez des contrats intelligents, déployez des solutions blockchain et travaillez sur des projets crypto innovants.',
+          requirements: [
+            'Solide connaissance de la blockchain',
+            'Expérience avec Solidity et Web3',
+            'Compréhension de la DeFi et des NFT',
+            'Esprit de résolution de problèmes',
+            'Portfolio GitHub requis'
+          ]
+        }
+      ],
+      culturePoints: [
+        {
+          title: 'L’innovation avant tout',
+          description: 'Nous encourageons la pensée créative et adoptons les nouvelles technologies pour rester en avance.'
+        },
+        {
+          title: 'Équilibre vie pro/vie perso',
+          description: 'Horaires flexibles, options à distance et environnement favorable à l’épanouissement personnel.'
+        },
+        {
+          title: 'Apprentissage continu',
+          description: 'Formations régulières, ateliers et budgets de développement professionnel.'
+        },
+        {
+          title: 'Culture collaborative',
+          description: 'Environnement d’équipe avec communication ouverte et respect mutuel.'
+        }
+      ],
+      form: {
+        applyFor: 'Postuler pour',
+        departmentLocation: '{department} • {location}',
+        fullName: 'Nom complet *',
+        email: 'Email *',
+        phone: 'Téléphone *',
+        experience: 'Années d’expérience *',
+        coverLetter: 'Lettre de motivation *',
+        resume: 'CV *',
+        resumeHelp: 'PDF, DOC ou DOCX (Max 5 Mo)',
+        submit: 'Envoyer la candidature',
+        submitting: 'Envoi...',
+        success: 'Candidature envoyée avec succès ! Nous reviendrons vers vous bientôt.',
+        placeholders: {
+          fullName: 'Jean Dupont',
+          email: 'jean@example.com',
+          phone: '+212 XXX XXX XXX',
+          experience: 'Sélectionnez l’expérience',
+          coverLetter: 'Expliquez pourquoi vous êtes le bon candidat...'
+        }
+      },
+      generalApplication: 'Candidature générale',
+      futureOpportunities: 'Opportunités futures',
+      flexible: 'Flexible'
     },
     home: {
       sectorsTitle: 'Nos secteurs d’activité',
@@ -623,8 +942,8 @@ const translations = {
       heroDescription: 'Contactez-nous pour discuter des opportunités d’investissement ou en savoir plus sur nos secteurs d’activité.',
       contactTitle: 'Entrer en contact',
       contactInfo: [
-        { title: 'Adresse', details: ['Go Baraka Sarl', 'Quartier des affaires', 'Ville, Pays'], link: null },
-        { title: 'Téléphone', details: ['77 2043677'], link: 'tel:772043677' },
+        { title: 'Adresse', details: ['Go Baraka Sarl', 'NINEA 012905686', 'Dakar Sénégal'], link: null },
+        { title: 'Téléphone', details: ['77 2043677'], link: 'tel: 766478365' },
         { title: 'E-mail', details: ['info@al-r.com'], link: 'mailto:info@al-r.com' },
         { title: 'Horaires', details: ['Lundi - Vendredi : 9h00 - 18h00', 'Samedi - Dimanche : fermé'], link: null },
       ],
