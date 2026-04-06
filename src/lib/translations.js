@@ -26,6 +26,7 @@ const translations = {
       commitmentText: 'Delivering excellence across all our business verticals with a focus on growth and innovation.',
       note: 'All rights reserved.',
       companySummary: 'We`re building sustainable partnerships, business integrity for long-term success.',
+      codeOfConductButton: 'Code of Conduct & Ethics',
     },
     hero: {
       label: 'What We Do',
@@ -509,6 +510,7 @@ const translations = {
       commitmentText: 'Offrir l’excellence dans toutes nos activités avec un accent sur la croissance et l’innovation.',
       note: 'Tous droits réservés.',
       companySummary: 'Nous construisons des partenariats durables et une intégrité commerciale pour un succès à long terme.',
+      codeOfConductButton: 'Code de conduite et d’éthique',
     },
     hero: {
       label: 'Ce que nous faisons',
