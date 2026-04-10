@@ -147,7 +147,7 @@ const translations = {
     transport: {
       heroTitle: 'Transport',
       heroDescription: 'Modern fleet management and transportation services ensuring reliable and timely delivery.',
-      overviewTitle: 'Moving Goods, Building Trust',
+      overviewTitle: 'Moving Goods and People',
       overviewLines: [
         'Our transport division operates a modern fleet of vehicles equipped with the latest tracking and safety technologies.',
         'We specialize in providing reliable transportation solutions for businesses across various industries, ensuring that goods reach their destination safely and on time.',
@@ -789,7 +789,7 @@ const translations = {
     transport: {
       heroTitle: 'Transport',
       heroDescription: 'Gestion de flotte moderne et services de transport garantissant une livraison fiable et ponctuelle.',
-      overviewTitle: 'Déplacer les marchandises, bâtir la confiance',
+      overviewTitle: 'Déplacer des biens et des personnes',
       overviewLines: [
         'Notre division transport exploite une flotte moderne de véhicules équipés des dernières technologies de suivi et de sécurité.',
         'Nous sommes spécialisés dans la fourniture de solutions de transport fiables pour les entreprises de divers secteurs, garantissant que les marchandises atteignent leur destination en toute sécurité et à temps.',
