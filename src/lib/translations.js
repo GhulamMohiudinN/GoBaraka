@@ -3,7 +3,7 @@
 const translations = {
   en: {
     nav: {
-      home: 'Home11',
+      home: 'Home',
       about: 'About',
       logistics: 'Logistics',
       transport: 'Transport',
