@@ -540,7 +540,7 @@ const translations = {
       generalApplicationButton: 'Envoyer une candidature générale',
       jobs: [
         {
-          title: 'Sr Coordinateur logistique',
+          title: 'Snr Coordinateur logistique',
           department: 'Logistique',
           location: 'Casablanca (Mar), Dakar (SN)',
           type: 'Temps plein',
