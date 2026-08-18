@@ -945,7 +945,7 @@ const translations = {
       contactTitle: 'Entrer en contact',
       contactInfo: [
         { title: 'change me later', details: ['Go Baraka Sarl', 'NINEA 012905686', 'Dakar Sénégal'], link: null },
-        { title: 'Téléphone', details: ['77 2043677'], link: 'tel: 766478365' },
+        { title: 'Téléphone', details: ['76 647 83 65'], link: 'tel: 766478365' },
         { title: 'E-mail', details: ['info@al-r.com'], link: 'mailto:info@al-r.com' },
         { title: 'Horaires', details: ['Lundi - Vendredi : 9h00 - 18h00', 'Samedi - Dimanche : fermé'], link: null },
       ],
