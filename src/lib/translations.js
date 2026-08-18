@@ -958,7 +958,7 @@ const translations = {
       sending: 'Envoi...',
       success: 'Message envoyé avec succès ! Nous vous répondrons bientôt.',
       quickNote: 'Réponse rapide :',
-      quickNoteText: 'Nous répondons généralement dans les 24 heures pendant les jours ouvrés.',
+      quickNoteText: 'Nous répondons généralement sous 24 heures pendant les jours ouvrables.',
     },
     statusLabels: {
       inProgress: 'En cours',
