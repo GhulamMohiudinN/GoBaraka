@@ -462,7 +462,7 @@ const translations = {
       contactTitle: 'Get In Touch',
       contactInfo: [
         { title: 'Address', details: ['Go Baraka Sarl', 'NINEA 012905686', 'Dakar Sénégal'], link: null },
-        { title: 'Phone', details: ['77 2043677'], link: 'tel:766478365' },
+        { title: 'Phone', details: ['123456789'], link: 'tel:766478365' },
         { title: 'Email', details: ['info@al-r.com'], link: 'mailto:info@al-r.com' },
         { title: 'Business Hours', details: ['Monday - Friday: 9:00 - 18:00', 'Saturday - Sunday: Closed'], link: null },
       ],
@@ -944,7 +944,7 @@ const translations = {
       heroDescription: 'Contactez-nous pour discuter des opportunités d’investissement ou en savoir plus sur nos secteurs d’activité.',
       contactTitle: 'Entrer en contact',
       contactInfo: [
-        { title: 'Adresse', details: ['Go Baraka Sarl', 'NINEA 012905686', 'Dakar Sénégal'], link: null },
+        { title: 'change me later', details: ['Go Baraka Sarl', 'NINEA 012905686', 'Dakar Sénégal'], link: null },
         { title: 'Téléphone', details: ['77 2043677'], link: 'tel: 766478365' },
         { title: 'E-mail', details: ['info@al-r.com'], link: 'mailto:info@al-r.com' },
         { title: 'Horaires', details: ['Lundi - Vendredi : 9h00 - 18h00', 'Samedi - Dimanche : fermé'], link: null },
