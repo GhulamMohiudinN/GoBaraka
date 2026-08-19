@@ -439,7 +439,7 @@ const translations = {
       heroTitle: 'Our Portfolio',
       heroDescription: 'Explore our diverse portfolio of projects and investments across all business sectors.',
       projects: [
-        { title: 'Logistics Hub Expansion', category: 'Logistics', description: 'Development of a 10,000 sqm logistics center with advanced automation systems.', status: 'Planned' },
+        { title: 'Logistics Hub Expansion', category: 'Logistics', description: 'Development of a 10,000 sqm logistics center with advanced automation systems.', status: 'WIP' },
         { title: 'Fleet Modernization Program', category: 'Transport', description: 'Investment in 50 new vehicles with GPS tracking and real-time monitoring.', status: 'In Progress' },
         { title: 'Luxury Tourism Platform', category: 'Tourism', description: 'Digital platform for premium travel experiences and concierge services.', status: 'Planned' },
         { title: 'Commodities Trading Desk', category: 'Trading', description: 'Expansion of trading operations into new international markets.', status: 'Planned' },
@@ -922,7 +922,7 @@ const translations = {
       heroTitle: 'Notre portefeuille',
       heroDescription: 'Découvrez notre portefeuille diversifié de projets et d’investissements dans tous les secteurs d’activité.',
       projects: [
-        { title: 'Expansion du hub logistique', category: 'Logistique', description: 'Développement d’un centre logistique de 10 000 m² avec des systèmes d’automatisation avancés.', status: 'Planifié' },
+        { title: 'Expansion du hub logistique', category: 'Logistique', description: 'Développement d’un centre logistique de 10 000 m² avec des systèmes d’automatisation avancés.', status: 'En phase' },
         { title: 'Programme de modernisation de la flotte', category: 'Transport', description: 'Investissement dans 50 nouveaux véhicules avec suivi GPS et surveillance en temps réel.', status: 'En cour' },
         { title: 'Plateforme de tourisme de luxe', category: 'Tourisme', description: 'Plateforme numérique pour des expériences de voyage premium et des services de conciergerie.', status: 'Planifié' },
         { title: 'Bureau de commerce des matières premières', category: 'Commerce', description: 'Extension des opérations commerciales vers de nouveaux marchés internationaux.', status: 'Planifié' },
