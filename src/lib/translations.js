@@ -300,7 +300,7 @@ const translations = {
         {
           title: 'Tourism Experience Designer',
           department: 'Tourism',
-          location: 'Marrakech, Morocco',
+          location: 'Multiple locations, Dakar (SN)',
           type: 'Full-time',
           salary: 'Competitive',
           experience: '3+ years',
