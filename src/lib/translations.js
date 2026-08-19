@@ -268,7 +268,7 @@ const translations = {
         {
           title: 'Senior Logistics Coordinator',
           department: 'Logistics',
-          location: 'Casablanca, Morocco',
+          location: 'Casablanca (Mar), Dakar (SN)',
           type: 'Full-time',
           salary: 'Competitive',
           experience: '5+ years',
