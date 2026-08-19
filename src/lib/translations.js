@@ -284,7 +284,7 @@ const translations = {
         {
           title: 'Transport Operations Manager',
           department: 'Transport',
-          location: 'Tangier, Morocco',
+          location: 'Agadir (Maroc), Mbour (SN)',
           type: 'Full-time',
           salary: 'Negotiable',
           experience: '7+ years',
