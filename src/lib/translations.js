@@ -558,7 +558,7 @@ const translations = {
         {
           title: 'Responsable des opérations de transport',
           department: 'Transport',
-          location: 'Tanger, Maroc',
+          location: 'Agadir (Maroc), Mbour (SN)',
           type: 'Temps plein',
           salary: 'Négociable',
           experience: '7+ ans',
