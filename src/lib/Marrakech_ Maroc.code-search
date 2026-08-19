@@ -1,0 +1,9 @@
+# Query: Marrakech, Maroc
+# ContextLines: 1
+
+1 result - 1 file
+
+src/lib/translations.js:
+  576            department: 'Tourisme',
+  577:           location: 'Marrakech,',
+  578            type: 'Temps plein',
