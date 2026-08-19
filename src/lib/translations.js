@@ -922,9 +922,9 @@ const translations = {
       heroTitle: 'Notre portefeuille',
       heroDescription: 'Découvrez notre portefeuille diversifié de projets et d’investissements dans tous les secteurs d’activité.',
       projects: [
-        { title: 'Expansion du hub logistique', category: 'Logistique', description: 'Développement d’un centre logistique de 10 000 m² avec des systèmes d’automatisation avancés.', status: 'En phase' },
-        { title: 'Programme de modernisation de la flotte', category: 'Transport', description: 'Investissement dans 50 nouveaux véhicules avec suivi GPS et surveillance en temps réel.', status: 'En cour' },
-        { title: 'Plateforme de tourisme de luxe', category: 'Tourisme', description: 'Plateforme numérique pour des expériences de voyage premium et des services de conciergerie.', status: 'Planifié' },
+        { title: 'Expansion du hub logistique', category: 'Logistique', description: 'Développement d’un centre logistique de 10 000 m² avec des systèmes d’automatisation avancés.', status: 'En cours' },
+        { title: 'Programme de modernisation de la flotte', category: 'Transport', description: 'Investissement dans 50 nouveaux véhicules avec suivi GPS et surveillance en temps réel.', status: 'En cours' },
+        { title: 'Plateforme de tourisme de luxe', category: 'Tourisme', description: 'Plateforme numérique pour des expériences de voyage premium et des services de conciergerie.', status: 'En cours' },
         { title: 'Bureau de commerce des matières premières', category: 'Commerce', description: 'Extension des opérations commerciales vers de nouveaux marchés internationaux.', status: 'Planifié' },
         { title: 'Suite de transformation numérique', category: 'Services numériques', description: 'Solutions logicielles d’entreprise pour l’automatisation des processus métier.', status: 'Planifié' },
         { title: 'Fonds d’investissement blockchain', category: 'Crypto', description: 'Véhicule d’investissement stratégique pour les actifs blockchain et crypto.', status: 'Planifié' },
