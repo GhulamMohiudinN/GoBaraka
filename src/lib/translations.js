@@ -441,7 +441,7 @@ const translations = {
       projects: [
         { title: 'Logistics Hub Expansion', category: 'Logistics', description: 'Development of a 10,000 sqm logistics center with advanced automation systems.', status: 'WIP' },
         { title: 'Fleet Modernization Program', category: 'Transport', description: 'Investment in 50 new vehicles with GPS tracking and real-time monitoring.', status: 'WIP' },
-        { title: 'Luxury Tourism Platform', category: 'Tourism', description: 'Digital platform for premium travel experiences and concierge services.', status: 'Planned' },
+        { title: 'Luxury Tourism Platform', category: 'Tourism', description: 'Digital platform for premium travel experiences and concierge services.', status: 'WIP' },
         { title: 'Commodities Trading Desk', category: 'Trading', description: 'Expansion of trading operations into new international markets.', status: 'Planned' },
         { title: 'Digital Transformation Suite', category: 'Digital Services', description: 'Enterprise software solutions for business process automation.', status: 'Planned' },
         { title: 'Blockchain Investment Fund', category: 'Crypto', description: 'Strategic investment vehicle for blockchain and crypto assets.', status: 'Planned' },
