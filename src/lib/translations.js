@@ -574,7 +574,7 @@ const translations = {
         {
           title: 'Concepteur d’expériences touristiques',
           department: 'Tourisme',
-          location: 'Marrakech, Maroc',
+          location: 'Plusieurs locaux, Dakar (SN)',
           type: 'Temps plein',
           salary: 'Compétitif',
           experience: '3+ ans',
