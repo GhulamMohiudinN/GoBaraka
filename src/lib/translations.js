@@ -749,9 +749,9 @@ const translations = {
       visionTitle: 'Notre vision',
       visionText: 'Devenir un groupe d’entreprises diversifié de premier plan en Afrique, reconnu pour son engagement envers l’excellence, l’innovation et une croissance durable dans tous nos secteurs d’activité.',
       stats: [
-        { label: 'Années d’expérience', value: '10+', icon: 'award' },
+        { label: 'Années d’expérience', value: '17+', icon: 'award' },
         { label: 'Secteurs d’activité', value: '6', icon: 'globe' },
-        { label: 'Projets réalisés', value: '50+', icon: 'trending' },
+        { label: 'Projets réalisés', value: '5+', icon: 'trending' },
         { label: 'Membres de l’équipe', value: '100+', icon: 'users' },
       ],
       valuesTitle: 'Nos valeurs fondamentales',
