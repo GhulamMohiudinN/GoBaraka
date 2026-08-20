@@ -107,9 +107,9 @@ const translations = {
       visionTitle: 'Our Vision',
       visionText: 'To become a leading diversified business group in Africa, recognized for our commitment to excellence, innovation, and sustainable growth across all our business sectors.',
       stats: [
-        { label: 'Years of Experience', value: '10+', icon: 'award' },
+        { label: 'Years of Experience', value: '17+', icon: 'award' },
         { label: 'Business Sectors', value: '6', icon: 'globe' },
-        { label: 'Projects Completed', value: '50+', icon: 'trending' },
+        { label: 'Projects Completed', value: '5+', icon: 'trending' },
         { label: 'Team Members', value: '100+', icon: 'users' },
       ],
       valuesTitle: 'Our Core Values',
