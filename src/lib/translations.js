@@ -31,10 +31,10 @@ const translations = {
     hero: {
       label: 'What We Do',
       line1: 'Investing For',
-      line2: "Go Baraka's",
-      line3: 'Economic Growth',
+      line2: "your",
+      line3: 'Economic Growth, creating value',
       description: 'A diversified business group building long-term value through strategic investments in logistics, transport, tourism, trading, and digital innovation.',
-      portfolioButton: 'View Portfolio',
+      portfolioButton: 'View current portfolios or create one with us',
       contactButton: 'Contact Us',
     },
     home: {
