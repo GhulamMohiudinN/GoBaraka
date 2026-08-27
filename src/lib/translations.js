@@ -745,9 +745,9 @@ const translations = {
       heroTitle: 'À propos de Go Baraka Sarl',
       heroDescription: 'Un groupe d’entreprises diversifié engagé dans l’excellence, l’innovation et une croissance durable à travers plusieurs secteurs.',
       missionTitle: 'Notre mission',
-      missionText: 'Offrir une valeur exceptionnelle à nos investisseurs et partenaires en construisant et en gérant un portefeuille diversifié d’entreprises qui exploitent l’innovation, l’excellence opérationnelle et des partenariats stratégiques.',
+      missionText: 'Faciliter une valeur exceptionnelle à nos membre investisseurs et partenaires en construisant et en gérant un portefeuille diversifié d’entreprises qui exploitent l’innovation, l’excellence opérationnelle et des partenariats stratégiques.',
       visionTitle: 'Notre vision',
-      visionText: 'Devenir un groupe d’entreprises diversifié de premier plan en Afrique, reconnu pour son engagement envers l’excellence, l’innovation et une croissance durable dans tous nos secteurs d’activité.',
+      visionText: 'Reconnu pour notre engagement envers l’excellence, l’innovation et une croissance durable dans tous nos secteurs d’activité.',
       stats: [
         { label: 'Années d’expérience', value: '17+', icon: 'award' },
         { label: 'Secteurs d’activité', value: '6', icon: 'globe' },
