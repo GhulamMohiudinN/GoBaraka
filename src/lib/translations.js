@@ -516,7 +516,7 @@ const translations = {
       label: 'Ce que nous faisons',
       line1: 'Investir pour',
       line2: 'La croissance',
-      line3: 'économique de Go Baraka',
+      line3: 'économique, et la creation de valeur',
       description: 'Un groupe d’entreprises diversifié construisant de la valeur à long terme grâce à des investissements stratégiques dans la logistique, le transport, le tourisme, le commerce et l’innovation numérique.',
       portfolioButton: 'Voir le portefeuille',
       contactButton: 'Contactez-nous',
