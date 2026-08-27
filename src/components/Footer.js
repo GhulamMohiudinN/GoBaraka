@@ -627,7 +627,7 @@ const Footer = () => {
                     <FiPhone className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
                   </div>
                   <span className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors">
-                    +77 2043677
+                    +76 647 83 65
                   </span>
                 </li>
                 <li className="flex items-start space-x-3 group">
