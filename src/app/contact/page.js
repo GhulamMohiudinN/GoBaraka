@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { FiMapPin, FiPhone, FiMail, FiClock, FiSend, FiCheckCircle, FiMessageSquare } from 'react-icons/fi';
 import { useLanguage } from '@/context/LanguageContext';
 
-const Contact = () => {
+const Partnership Contact = () => {
   const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
