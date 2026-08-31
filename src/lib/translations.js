@@ -35,7 +35,7 @@ const translations = {
       line3: 'Economic Growth, creating value',
       description: 'A diversified business group building long-term value through strategic investments in logistics, transport, tourism, trading, and digital innovation.',
       portfolioButton: 'View current portfolios or create one with us',
-      contactButton: 'Contact Us',
+      contactButton: 'Got a project; Contact Us today',
     },
     home: {
       sectorsTitle: 'Our Business Sectors',
