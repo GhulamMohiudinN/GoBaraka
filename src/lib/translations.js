@@ -13,7 +13,7 @@ const translations = {
       crypto: 'Crypto',
       portfolio: 'Portfolio',
       careers: 'Careers',
-      contact: 'Contact',
+      contact: 'Partnership Contact',
     },
     header: {
       switchLabel: 'FR',
