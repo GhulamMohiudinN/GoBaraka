@@ -466,7 +466,7 @@ const translations = {
       contactInfo: [
         { title: 'Address', details: ['Go Baraka Sarl', 'NINEA 012905686', 'Dakar Sénégal'], link: null },
         { title: 'Phone', details: ['76 647 83 65'], link: 'tel:766478365' },
-        { title: 'Email', details: ['info@al-r.com'], link: 'mailto:info@al-r.com' },
+        { title: 'Email', details: ['irismonde1711@gmail.com'], link: 'mailto:irismonde1711@gmail.com' },
         { title: 'Business Hours', details: ['Monday - Friday: 9:00 - 18:00', 'Saturday - Sunday: Closed'], link: null },
       ],
       formTitle: 'Send Us a Message',
@@ -1034,7 +1034,7 @@ const translations = {
       contactInfo: [
         { title: 'change me later', details: ['Go Baraka Sarl', 'NINEA 012905686', 'Dakar Sénégal'], link: null },
         { title: 'Téléphone', details: ['76 647 83 65'], link: 'tel: 766478365' },
-        { title: 'E-mail', details: ['info@al-r.com'], link: 'mailto:info@al-r.com' },
+        { title: 'E-mail', details: ['irismonde1711@gmail.com'], link: 'mailto:irismonde1711@gmail.com' },
         { title: 'Horaires', details: ['Lundi - Vendredi : 9h00 - 18h00', 'Samedi - Dimanche : fermé'], link: null },
       ],
       formTitle: 'Envoyez-nous un message',
