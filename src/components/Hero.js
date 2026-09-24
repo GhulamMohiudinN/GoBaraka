@@ -113,7 +113,7 @@ const Hero = () => {
             </Link>
 
             <Link
-              href="/contact"
+              href="/iris-monde#partnership-contact"
               className="group inline-flex items-center justify-center px-6 sm:px-8 py-3 border-2 border-gray-600 text-gray-300 font-semibold rounded-lg hover:border-blue-500 hover:text-blue-400 hover:bg-blue-500/10 transition-all duration-300 text-sm sm:text-base"
             >
               {t.hero.contactButton}

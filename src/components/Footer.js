@@ -497,6 +497,8 @@ const Footer = () => {
     { name: t.nav.digitalServices, href: '/digital-services' },
     { name: t.nav.crypto, href: '/crypto' },
     { name: t.nav.portfolio, href: '/portfolio' },
+    { name: t.nav.irisMonde, href: '/iris-monde' },
+    { name: t.nav.selfTraining, href: '/self-training' },
     { name: t.nav.contact, href: '/contact' },
   ];
 

@@ -1,9 +1,20 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import Hero from '@/components/Hero';
 import SectorCard from '@/components/SectorCard';
-import { FiTruck, FiBox, FiGlobe, FiShoppingBag, FiCode, FiCpu } from 'react-icons/fi';
+import {
+  FiTruck,
+  FiBox,
+  FiGlobe,
+  FiShoppingBag,
+  FiCode,
+  FiCpu,
+  FiArrowRight,
+  FiBookOpen,
+  FiCheckCircle,
+} from 'react-icons/fi';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function Home() {
@@ -111,6 +122,62 @@ export default function Home() {
                 buttonText={t.home.learnMore}
               />
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Iris Monde partnership & self-training */}
+      <section className="py-20 bg-gradient-to-br from-[#0A1128] via-[#1A2333] to-[#0A1128]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div>
+              <span className="inline-block text-xs font-mono tracking-wider text-blue-400 uppercase mb-4 bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full">
+                {t.irisMonde.eyebrow}
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+                {t.irisMonde.introTitle}
+              </h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-emerald-500 mb-6 rounded-full"></div>
+              <p className="text-gray-300 leading-relaxed mb-8">{t.irisMonde.introText}</p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  href="/iris-monde#partnership-contact"
+                  className="group inline-flex items-center justify-center px-6 sm:px-8 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25 text-sm sm:text-base"
+                >
+                  {t.hero.contactButton}
+                  <FiArrowRight className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+                <Link
+                  href="/self-training"
+                  className="inline-flex items-center justify-center px-6 sm:px-8 py-3 border-2 border-gray-600 text-gray-300 font-semibold rounded-lg hover:border-blue-500 hover:text-blue-400 hover:bg-blue-500/10 transition-all duration-300 text-sm sm:text-base"
+                >
+                  <FiBookOpen className="mr-2 w-5 h-5" />
+                  {t.irisMonde.trainingButton}
+                </Link>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {t.irisMonde.pillars.map((pillar) => (
+                <div
+                  key={pillar.title}
+                  className="p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:border-blue-500/50 transition-all duration-300"
+                >
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-blue-400 mb-4">
+                    {pillar.title}
+                  </h3>
+                  <ul className="space-y-2">
+                    {pillar.points.map((point) => (
+                      <li key={point} className="flex items-start gap-2 text-sm text-gray-300">
+                        <FiCheckCircle className="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0" />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

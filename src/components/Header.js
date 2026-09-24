@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FiMenu, FiX } from 'react-icons/fi';
@@ -12,6 +12,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  const menuRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,21 +22,45 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close the menu when the route changes or when clicking outside of it.
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const { language, setLanguage, t } = useLanguage();
 
-  const navigation = [
+  // Shown inline on desktop.
+  const primaryNavigation = [
     { name: t.nav.home, href: '/' },
     { name: t.nav.about, href: '/about' },
     { name: t.nav.logistics, href: '/logistics' },
     { name: t.nav.transport, href: '/transport' },
     { name: t.nav.tourism, href: '/tourism' },
     { name: t.nav.trading, href: '/trading' },
-    { name: t.nav.digitalServices, href: '/digital-services' },
     { name: t.nav.crypto, href: '/crypto' },
     { name: t.nav.portfolio, href: '/portfolio' },
     { name: t.nav.careers, href: '/careers' },
+  ];
+
+  // Shown inside the menu button on every screen size.
+  const moreNavigation = [
+    { name: t.nav.digitalServices, href: '/digital-services' },
+    { name: t.nav.irisMonde, href: '/iris-monde' },
+    { name: t.nav.selfTraining, href: '/self-training' },
     { name: t.nav.contact, href: '/contact' },
   ];
+
+  const isMoreActive = moreNavigation.some((item) => item.href === pathname);
 
   return (
     <header
@@ -45,24 +70,20 @@ const Header = () => {
           : 'bg-transparent'
       }`}
     >
-      <nav className="container-custom ">
-        <div className="flex justify-between items-center ">
+      <nav className="container-custom" ref={menuRef}>
+        <div className="flex justify-between items-center gap-4">
           {/* Logo */}
-          <Link href="/" className="mt-1">
-            {/* <div className="w-10 h-10 bg-primary-dark rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">GB</span>
-            </div>
-            <span className="text-xl font-bold text-primary-dark">Go Baraka Sarl</span> */}
+          <Link href="/" className="mt-1 flex-shrink-0">
             <Image src={logo} alt="Go Baraka Sarl Logo" width={100} height={10} />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex space-x-6">
-            {navigation.map((item) => (
+          <div className="hidden lg:flex items-center gap-5 xl:gap-6">
+            {primaryNavigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
+                className={`whitespace-nowrap text-sm font-medium transition-colors hover:text-primary ${
                   pathname === item.href
                     ? 'text-primary border-b-2 border-primary'
                     : 'text-gray-700'
@@ -73,7 +94,7 @@ const Header = () => {
             ))}
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-shrink-0">
             <button
               onClick={() => setLanguage(language === 'en' ? 'fr' : 'en')}
               title={t.header.switchTitle}
@@ -81,30 +102,52 @@ const Header = () => {
             >
               {t.header.switchLabel}
             </button>
-          </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
-          >
-            {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-          </button>
+            {/* Menu Button - holds the remaining links on every screen size */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              aria-expanded={isOpen}
+              aria-label={t.header.menuLabel}
+              title={t.header.menuLabel}
+              className={`p-2 rounded-lg transition-colors ${
+                isOpen || isMoreActive
+                  ? 'bg-primary text-white'
+                  : 'text-gray-800 hover:bg-gray-100'
+              }`}
+            >
+              {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+            </button>
+          </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Dropdown: extra links on desktop, the full menu on smaller screens */}
         {isOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-white shadow-lg">
-            <div className="container-custom py-4">
-              {navigation.map((item) => (
+          <div className="absolute top-full right-0 left-0 lg:left-auto lg:right-8 lg:w-64 bg-white shadow-xl lg:rounded-2xl lg:border lg:border-gray-100 overflow-hidden">
+            <div className="container-custom lg:px-0 py-2">
+              {/* Primary links are only repeated here below the desktop breakpoint */}
+              <div className="lg:hidden">
+                {primaryNavigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`block py-3 text-sm font-medium transition-colors hover:text-primary ${
+                      pathname === item.href ? 'text-blue-950' : 'text-gray-700'
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+                <div className="my-2 border-t border-gray-100" />
+              </div>
+
+              {moreNavigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`block py-3 text-sm font-medium transition-colors hover:text-primary ${
-                    pathname === item.href
-                      ? 'text-blue-950'
-                      : 'text-gray-700'
+                  className={`block py-3 lg:px-5 text-sm font-medium transition-colors hover:text-primary lg:hover:bg-gray-50 ${
+                    pathname === item.href ? 'text-blue-950 lg:bg-gray-50' : 'text-gray-700'
                   }`}
                 >
                   {item.name}
