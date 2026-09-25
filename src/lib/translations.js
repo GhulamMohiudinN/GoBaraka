@@ -364,6 +364,22 @@ const translations = {
             'GitHub portfolio required'
           ]
         }
+        {
+          title: 'Multiples Project Manager',
+          department: 'Crypto',
+          location: 'Onsite',
+          type: 'Full-time',
+          salary: 'High',
+          experience: '2+ years',
+          description: 'Build smart contracts, deploy blockchain solutions, and work on crypto innovation projects.',
+          requirements: [
+            'Strong knowledge of blockchain technology',
+            'Experience with Solidity and Web3',
+            'Understanding of DeFi and NFTs',
+            'Problem-solving mindset',
+            'GitHub portfolio required'
+          ]
+        }
       ],
       culturePoints: [
         {
