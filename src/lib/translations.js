@@ -445,8 +445,7 @@ const translations = {
         { title: 'Research Hub Expansion', category: 'Research Center', description: 'Development of a 10,000 sqm research center with advanced automation systems.', status: 'WIP' },
         { title: 'Fleet Modernization Program', category: 'Transport', description: 'Investment in 50 new vehicles with GPS tracking and real-time monitoring.', status: 'WIP' },
         { title: 'Luxury Tourism Platform', category: 'Tourism', description: 'Digital platform for premium travel experiences and concierge services.', status: 'WIP' },
-        { title: 'Current opportunities', category: 'Commerce', description: 'Seeking local businesses to fund solar and agricultural programs, business can email 
-          to irismonde1711@gmail for details.', status: 'WIP' },
+        { title: 'Current opportunities', category: 'Commerce', description: 'Seeking local businesses to fund solar and agricultural programs, emailto irismonde1711@gmail for details.', status: 'WIP' },
         { title: 'Digital Transformation Suite', category: 'Digital Services', description: 'Enterprise software solutions for business process automation.', status: 'Planned' },
         { title: 'Blockchain Investment Fund', category: 'Crypto', description: 'Strategic investment vehicle for blockchain and crypto assets.', status: 'Planned' },
         { title: 'Green Logistics Initiative', category: 'Logistics', description: 'Sustainable transportation solutions with electric vehicle fleet.', status: 'Planned' },
