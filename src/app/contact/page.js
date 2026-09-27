@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import { FiMapPin, FiPhone, FiMail, FiClock, FiSend, FiCheckCircle, FiMessageSquare } from 'react-icons/fi';
 import { useLanguage } from '@/context/LanguageContext';
 
+const FORM_ENDPOINT = 'https://formspree.io/f/xrpbyvge';
+
 const Contact = () => {
   const { t } = useLanguage();
   const [formData, setFormData] = useState({
@@ -46,14 +48,24 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('sending');
-    setTimeout(() => {
+    try {
+      const response = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        throw new Error('Submission failed');
+      }
       setStatus('success');
       setFormData({ name: '', email: '', phone: '', message: '' });
-      setTimeout(() => setStatus(''), 3000);
-    }, 1000);
+      setTimeout(() => setStatus(''), 5000);
+    } catch {
+      setStatus('error');
+    }
   };
 
   const contactIcons = [FiMapPin, FiPhone, FiMail, FiClock];
@@ -260,8 +272,14 @@ const Contact = () => {
                   <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg animate-fade-in">
                     <p className="text-green-700 text-center text-sm flex items-center justify-center gap-2">
                       <FiCheckCircle className="w-4 h-4" />
-                      Thank you! Your message has been sent successfully.
+                      {t.contact.success}
                     </p>
+                  </div>
+                )}
+
+                {status === 'error' && (
+                  <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg animate-fade-in">
+                    <p className="text-red-700 text-center text-sm">{t.contact.error}</p>
                   </div>
                 )}
               </form>

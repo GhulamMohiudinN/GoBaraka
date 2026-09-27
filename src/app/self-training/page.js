@@ -10,19 +10,22 @@ import {
   FiCheckCircle,
   FiChevronDown,
   FiClipboard,
-  FiEye,
-  FiEyeOff,
+  FiEdit3,
   FiFileText,
   FiLayers,
+  FiLock,
   FiRefreshCw,
   FiShield,
   FiTruck,
   FiUsers,
+  FiXCircle,
 } from 'react-icons/fi';
 import { useLanguage } from '@/context/LanguageContext';
 import training from '@/lib/training';
+import quiz from '@/lib/quiz';
 
-const STORAGE_KEY = 'gobaraka-training-progress';
+const STORAGE_KEY = 'gobaraka-training-results';
+const PASS_MARK = 50;
 
 const trackIcons = {
   tax: FiFileText,
@@ -41,17 +44,20 @@ const trackGradients = {
 const SelfTraining = () => {
   const { t, language } = useLanguage();
   const content = training[language] || training.en;
+  const questionBank = quiz[language] || quiz.en;
 
   const [activeTrack, setActiveTrack] = useState(content.tracks[0].id);
-  const [openCase, setOpenCase] = useState(null);
-  const [revealed, setRevealed] = useState({});
-  const [completed, setCompleted] = useState({});
+  const [collapsed, setCollapsed] = useState({});
+  const [answers, setAnswers] = useState({});
+  const [submitted, setSubmitted] = useState({});
+  const [results, setResults] = useState({});
   const [heroVisible, setHeroVisible] = useState(false);
   const [howVisible, setHowVisible] = useState(false);
 
   const heroRef = useRef(null);
   const howRef = useRef(null);
   const tracksRef = useRef(null);
+  const resultRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -74,25 +80,32 @@ const SelfTraining = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Progress is per device, stored locally - no account required.
+  // Best score per pathway, kept on this device only.
   useEffect(() => {
     try {
       const stored = window.localStorage.getItem(STORAGE_KEY);
       if (stored) {
-        setCompleted(JSON.parse(stored));
+        setResults(JSON.parse(stored));
       }
     } catch {
-      setCompleted({});
+      setResults({});
     }
   }, []);
 
-  const persist = (next) => {
-    setCompleted(next);
-    try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-    } catch {
-      /* storage unavailable - progress stays in memory for this visit */
-    }
+  const persistResult = (trackId, result) => {
+    setResults((current) => {
+      const previous = current[trackId];
+      const next =
+        previous && previous.percent >= result.percent
+          ? current
+          : { ...current, [trackId]: result };
+      try {
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+      } catch {
+        /* storage unavailable - the score still shows for this visit */
+      }
+      return next;
+    });
   };
 
   const track = useMemo(
@@ -100,44 +113,75 @@ const SelfTraining = () => {
     [content, activeTrack]
   );
 
-  const completedInTrack = track.cases.filter((item) => completed[`${track.id}-${item.id}`]).length;
-  const progress = Math.round((completedInTrack / track.cases.length) * 100);
+  const questionsFor = (caseId) => questionBank[caseId] || [];
 
-  const toggleCase = (caseId) => {
-    setOpenCase((current) => (current === caseId ? null : caseId));
+  const trackQuestions = useMemo(
+    () =>
+      track.cases.flatMap((item) =>
+        questionsFor(item.id).map((question, index) => ({
+          key: `${track.id}-${item.id}-${index}`,
+          question,
+        }))
+      ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [track, questionBank]
+  );
+
+  const total = trackQuestions.length;
+  const answeredCount = trackQuestions.filter(
+    ({ key }) => answers[key] !== undefined
+  ).length;
+  const score = trackQuestions.filter(
+    ({ key, question }) => answers[key] === question.answer
+  ).length;
+  const percent = total ? Math.round((score / total) * 100) : 0;
+  const isSubmitted = Boolean(submitted[track.id]);
+  const passed = percent >= PASS_MARK;
+
+  const selectAnswer = (key, optionIndex) => {
+    if (isSubmitted) return;
+    setAnswers((current) => ({ ...current, [key]: optionIndex }));
   };
 
-  const toggleSolution = (key) => {
-    setRevealed((current) => ({ ...current, [key]: !current[key] }));
-  };
-
-  const toggleComplete = (key) => {
-    const next = { ...completed };
-    if (next[key]) {
-      delete next[key];
-    } else {
-      next[key] = true;
+  const submitTrack = () => {
+    setSubmitted((current) => ({ ...current, [track.id]: true }));
+    persistResult(track.id, { score, total, percent, passed });
+    setCollapsed({});
+    if (resultRef.current) {
+      resultRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-    persist(next);
   };
 
-  const resetTrackProgress = () => {
-    const next = { ...completed };
-    track.cases.forEach((item) => {
-      delete next[`${track.id}-${item.id}`];
+  const retryTrack = () => {
+    setAnswers((current) => {
+      const next = { ...current };
+      trackQuestions.forEach(({ key }) => delete next[key]);
+      return next;
     });
-    persist(next);
-  };
-
-  const selectTrack = (id) => {
-    setActiveTrack(id);
-    setOpenCase(null);
+    setSubmitted((current) => {
+      const next = { ...current };
+      delete next[track.id];
+      return next;
+    });
+    setCollapsed({});
     if (tracksRef.current) {
       tracksRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
-  const howIcons = [FiLayers, FiClipboard, FiEye, FiAward];
+  const selectTrack = (id) => {
+    setActiveTrack(id);
+    setCollapsed({});
+    if (tracksRef.current) {
+      tracksRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const toggleCase = (caseKey) => {
+    setCollapsed((current) => ({ ...current, [caseKey]: !current[caseKey] }));
+  };
+
+  const howIcons = [FiLayers, FiClipboard, FiEdit3, FiAward];
 
   return (
     <div className="overflow-hidden">
@@ -232,7 +276,7 @@ const SelfTraining = () => {
             {content.tracks.map((item) => {
               const Icon = trackIcons[item.id] || FiBookOpen;
               const isActive = item.id === activeTrack;
-              const done = item.cases.filter((c) => completed[`${item.id}-${c.id}`]).length;
+              const best = results[item.id];
               return (
                 <button
                   key={item.id}
@@ -252,9 +296,21 @@ const SelfTraining = () => {
                     >
                       <Icon className="w-5 h-5 text-white" />
                     </div>
-                    <span className="text-xs font-mono text-gray-500">
-                      {done}/{item.cases.length}
-                    </span>
+                    {best ? (
+                      <span
+                        className={`text-xs font-bold px-2 py-1 rounded-full ${
+                          best.passed
+                            ? 'bg-emerald-100 text-emerald-700'
+                            : 'bg-amber-100 text-amber-700'
+                        }`}
+                      >
+                        {best.percent}%
+                      </span>
+                    ) : (
+                      <span className="text-xs font-mono text-gray-400">
+                        {t.selfTraining.notStarted}
+                      </span>
+                    )}
                   </div>
                   <div className="text-xs font-mono uppercase tracking-wider text-blue-600 mb-1">
                     {item.code}
@@ -278,40 +334,80 @@ const SelfTraining = () => {
 
               <div className="lg:w-72 w-full">
                 <div className="flex items-center justify-between text-sm mb-2">
-                  <span className="font-semibold text-gray-700">
-                    {t.selfTraining.progressLabel}
-                  </span>
+                  <span className="font-semibold text-gray-700">{t.selfTraining.progressLabel}</span>
                   <span className="font-mono text-gray-500">
-                    {completedInTrack}/{track.cases.length} · {progress}%
+                    {answeredCount}/{total} {t.selfTraining.answeredLabel}
                   </span>
                 </div>
                 <div className="w-full h-2.5 bg-gray-200 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full transition-all duration-500"
-                    style={{ width: `${progress}%` }}
+                    style={{ width: `${total ? (answeredCount / total) * 100 : 0}%` }}
                   />
                 </div>
-                <div className="flex items-center justify-between mt-3">
-                  {progress === 100 ? (
-                    <span className="text-xs font-semibold text-emerald-600 flex items-center gap-1">
-                      <FiAward className="w-4 h-4" />
-                      {t.selfTraining.completedAll}
-                    </span>
-                  ) : (
-                    <span className="text-xs text-gray-500">
-                      {track.cases.length} {t.selfTraining.casesLabel}
-                    </span>
-                  )}
-                  <button
-                    type="button"
-                    onClick={resetTrackProgress}
-                    className="text-xs text-gray-500 hover:text-blue-600 flex items-center gap-1 transition-colors"
-                  >
-                    <FiRefreshCw className="w-3.5 h-3.5" />
-                    {t.selfTraining.resetProgress}
-                  </button>
+                <div className="flex items-center justify-between mt-3 text-xs text-gray-500">
+                  <span>
+                    {track.cases.length} {t.selfTraining.casesLabel}
+                  </span>
+                  <span>{t.selfTraining.passMark}</span>
                 </div>
+                {results[track.id] && (
+                  <div className="mt-2 text-xs text-gray-500">
+                    {t.selfTraining.bestScore}: {results[track.id].percent}%
+                  </div>
+                )}
               </div>
+            </div>
+
+            {/* Result panel */}
+            <div ref={resultRef} className="scroll-mt-24">
+              {isSubmitted && (
+                <div
+                  className={`mb-8 rounded-2xl border p-6 lg:p-8 ${
+                    passed ? 'bg-emerald-50 border-emerald-200' : 'bg-amber-50 border-amber-200'
+                  }`}
+                >
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div className="flex items-center gap-4">
+                      <div
+                        className={`w-14 h-14 rounded-2xl flex items-center justify-center ${
+                          passed ? 'bg-emerald-500' : 'bg-amber-500'
+                        }`}
+                      >
+                        {passed ? (
+                          <FiAward className="w-7 h-7 text-white" />
+                        ) : (
+                          <FiRefreshCw className="w-7 h-7 text-white" />
+                        )}
+                      </div>
+                      <div>
+                        <div className="text-xs font-mono uppercase tracking-wider text-gray-500 mb-1">
+                          {t.selfTraining.resultsTitle}
+                        </div>
+                        <div className="text-2xl font-bold text-gray-900">
+                          {t.selfTraining.yourScore}: {score}/{total} · {percent}%
+                        </div>
+                        <div
+                          className={`text-sm font-semibold mt-1 ${
+                            passed ? 'text-emerald-700' : 'text-amber-700'
+                          }`}
+                        >
+                          {passed ? t.selfTraining.passed : t.selfTraining.failed} ·{' '}
+                          {t.selfTraining.passMark}
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={retryTrack}
+                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm bg-white border-2 border-gray-300 text-gray-700 hover:border-blue-500 hover:text-blue-600 transition-all duration-300"
+                    >
+                      <FiRefreshCw className="w-4 h-4" />
+                      {t.selfTraining.retry}
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Optional highlight strip (SOD roles, customs documents...) */}
@@ -336,32 +432,28 @@ const SelfTraining = () => {
             {/* Cases */}
             <div className="space-y-4">
               {track.cases.map((item) => {
-                const key = `${track.id}-${item.id}`;
-                const isOpen = openCase === key;
-                const isDone = Boolean(completed[key]);
-                const isRevealed = Boolean(revealed[key]);
+                const caseKey = `${track.id}-${item.id}`;
+                const isOpen = !collapsed[caseKey];
+                const caseQuestions = questionsFor(item.id);
+                const caseAnswered = caseQuestions.filter(
+                  (question, index) => answers[`${caseKey}-${index}`] !== undefined
+                ).length;
 
                 return (
                   <div
-                    key={key}
+                    key={caseKey}
                     className={`bg-white rounded-2xl border transition-all duration-300 overflow-hidden ${
-                      isOpen ? 'border-blue-300 shadow-lg' : 'border-gray-200 shadow-sm hover:shadow-md'
+                      isOpen ? 'border-blue-200 shadow-md' : 'border-gray-200 shadow-sm hover:shadow-md'
                     }`}
                   >
                     <button
                       type="button"
-                      onClick={() => toggleCase(key)}
+                      onClick={() => toggleCase(caseKey)}
                       aria-expanded={isOpen}
                       className="w-full flex items-center gap-4 text-left px-5 lg:px-6 py-5"
                     >
-                      <span
-                        className={`flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center font-mono text-sm font-bold ${
-                          isDone
-                            ? 'bg-emerald-100 text-emerald-700'
-                            : 'bg-blue-50 text-blue-700'
-                        }`}
-                      >
-                        {isDone ? <FiCheckCircle className="w-5 h-5" /> : item.id}
+                      <span className="flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center font-mono text-sm font-bold bg-blue-50 text-blue-700">
+                        {item.id}
                       </span>
                       <span className="flex-1">
                         <span className="block text-xs font-mono uppercase tracking-wider text-gray-500 mb-1">
@@ -370,6 +462,9 @@ const SelfTraining = () => {
                         <span className="block font-semibold text-gray-900 leading-snug">
                           {item.title}
                         </span>
+                      </span>
+                      <span className="hidden sm:block text-xs font-mono text-gray-400 flex-shrink-0">
+                        {caseAnswered}/{caseQuestions.length}
                       </span>
                       <FiChevronDown
                         className={`w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-300 ${
@@ -397,10 +492,7 @@ const SelfTraining = () => {
                             </h4>
                             <ul className="space-y-2">
                               {item.data.map((line, index) => (
-                                <li
-                                  key={index}
-                                  className="text-sm text-gray-600 flex items-start gap-2"
-                                >
+                                <li key={index} className="text-sm text-gray-600 flex items-start gap-2">
                                   <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-400 flex-shrink-0" />
                                   <span>{line}</span>
                                 </li>
@@ -416,10 +508,7 @@ const SelfTraining = () => {
                             </h4>
                             <ul className="space-y-2">
                               {item.instructions.map((line, index) => (
-                                <li
-                                  key={index}
-                                  className="text-sm text-gray-700 flex items-start gap-2"
-                                >
+                                <li key={index} className="text-sm text-gray-700 flex items-start gap-2">
                                   <span className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-600 text-white text-[10px] font-bold flex items-center justify-center mt-0.5">
                                     {index + 1}
                                   </span>
@@ -430,66 +519,148 @@ const SelfTraining = () => {
                           </div>
                         </div>
 
-                        {/* Solution */}
+                        {/* Questions */}
                         <div>
-                          <button
-                            type="button"
-                            onClick={() => toggleSolution(key)}
-                            className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm transition-all duration-300 ${
-                              isRevealed
-                                ? 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                                : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 shadow-md'
-                            }`}
-                          >
-                            {isRevealed ? (
-                              <>
-                                <FiEyeOff className="w-4 h-4" />
-                                {t.selfTraining.hideSolution}
-                              </>
-                            ) : (
-                              <>
-                                <FiEye className="w-4 h-4" />
-                                {t.selfTraining.showSolution}
-                              </>
-                            )}
-                          </button>
-
-                          {isRevealed && (
-                            <div className="mt-4 bg-emerald-50 border border-emerald-100 rounded-xl p-5">
-                              <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-700 mb-3 flex items-center gap-2">
-                                <FiCheckCircle className="w-4 h-4" />
-                                {t.selfTraining.solutionLabel}
-                              </h4>
-                              <ul className="space-y-3">
-                                {item.solution.map((line, index) => (
-                                  <li
-                                    key={index}
-                                    className="text-sm text-gray-700 flex items-start gap-2 leading-relaxed"
-                                  >
-                                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
-                                    <span>{line}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
+                          <h4 className="text-xs font-bold uppercase tracking-wider text-gray-700 mb-1 flex items-center gap-2">
+                            <FiEdit3 className="w-4 h-4 text-gray-500" />
+                            {t.selfTraining.questionsLabel}
+                          </h4>
+                          {!isSubmitted && (
+                            <p className="text-xs text-gray-500 mb-4 flex items-center gap-1.5">
+                              <FiLock className="w-3.5 h-3.5" />
+                              {t.selfTraining.noAnswersHint}
+                            </p>
                           )}
+
+                          <div className="space-y-5 mt-4">
+                            {caseQuestions.map((question, index) => {
+                              const key = `${caseKey}-${index}`;
+                              const chosen = answers[key];
+                              const isCorrect = chosen === question.answer;
+
+                              return (
+                                <div
+                                  key={key}
+                                  className={`rounded-xl border p-5 ${
+                                    !isSubmitted
+                                      ? 'border-gray-200 bg-white'
+                                      : isCorrect
+                                      ? 'border-emerald-200 bg-emerald-50/60'
+                                      : 'border-red-200 bg-red-50/60'
+                                  }`}
+                                >
+                                  <div className="flex items-start justify-between gap-3 mb-4">
+                                    <p className="font-semibold text-gray-900 text-sm leading-relaxed">
+                                      {index + 1}. {question.prompt}
+                                    </p>
+                                    {isSubmitted && (
+                                      <span
+                                        className={`flex-shrink-0 inline-flex items-center gap-1 text-xs font-bold px-2 py-1 rounded-full ${
+                                          isCorrect
+                                            ? 'bg-emerald-100 text-emerald-700'
+                                            : 'bg-red-100 text-red-700'
+                                        }`}
+                                      >
+                                        {isCorrect ? (
+                                          <FiCheckCircle className="w-3.5 h-3.5" />
+                                        ) : (
+                                          <FiXCircle className="w-3.5 h-3.5" />
+                                        )}
+                                        {isCorrect
+                                          ? t.selfTraining.correctLabel
+                                          : t.selfTraining.incorrectLabel}
+                                      </span>
+                                    )}
+                                  </div>
+
+                                  <div className="space-y-2">
+                                    {question.options.map((option, optionIndex) => {
+                                      const selected = chosen === optionIndex;
+                                      const isAnswer = question.answer === optionIndex;
+
+                                      let optionClass =
+                                        'border-gray-200 bg-white hover:border-blue-400 hover:bg-blue-50/50';
+                                      if (isSubmitted) {
+                                        if (isAnswer) {
+                                          optionClass = 'border-emerald-400 bg-emerald-50';
+                                        } else if (selected) {
+                                          optionClass = 'border-red-300 bg-red-50';
+                                        } else {
+                                          optionClass = 'border-gray-200 bg-white opacity-70';
+                                        }
+                                      } else if (selected) {
+                                        optionClass = 'border-blue-500 bg-blue-50';
+                                      }
+
+                                      return (
+                                        <label
+                                          key={optionIndex}
+                                          className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition-all duration-200 ${optionClass} ${
+                                            isSubmitted ? 'cursor-default' : ''
+                                          }`}
+                                        >
+                                          <input
+                                            type="radio"
+                                            name={key}
+                                            checked={selected || false}
+                                            disabled={isSubmitted}
+                                            onChange={() => selectAnswer(key, optionIndex)}
+                                            className="mt-1 accent-blue-600"
+                                          />
+                                          <span className="text-sm text-gray-700 leading-relaxed">
+                                            {option}
+                                          </span>
+                                          {isSubmitted && isAnswer && (
+                                            <span className="ml-auto flex-shrink-0 text-[10px] font-bold uppercase tracking-wider text-emerald-700">
+                                              {t.selfTraining.correctAnswer}
+                                            </span>
+                                          )}
+                                          {isSubmitted && selected && !isAnswer && (
+                                            <span className="ml-auto flex-shrink-0 text-[10px] font-bold uppercase tracking-wider text-red-600">
+                                              {t.selfTraining.yourAnswer}
+                                            </span>
+                                          )}
+                                        </label>
+                                      );
+                                    })}
+                                  </div>
+
+                                  {isSubmitted && (
+                                    <p className="mt-4 text-sm text-gray-700 leading-relaxed border-t border-gray-200 pt-3">
+                                      {chosen === undefined && (
+                                        <span className="font-semibold text-red-600">
+                                          {t.selfTraining.notAnswered} —{' '}
+                                        </span>
+                                      )}
+                                      {question.explanation}
+                                    </p>
+                                  )}
+                                </div>
+                              );
+                            })}
+                          </div>
                         </div>
 
-                        {/* Completion */}
-                        <div className="pt-2 border-t border-gray-100 flex flex-wrap items-center gap-3">
-                          <button
-                            type="button"
-                            onClick={() => toggleComplete(key)}
-                            className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm transition-all duration-300 border-2 ${
-                              isDone
-                                ? 'border-emerald-500 bg-emerald-500 text-white hover:bg-emerald-600'
-                                : 'border-gray-300 text-gray-700 hover:border-emerald-500 hover:text-emerald-600'
-                            }`}
-                          >
-                            <FiCheckCircle className="w-4 h-4" />
-                            {isDone ? t.selfTraining.markedComplete : t.selfTraining.markComplete}
-                          </button>
-                        </div>
+                        {/* Legal recap, only once the pathway is submitted */}
+                        {isSubmitted && (
+                          <div className="bg-emerald-50 border border-emerald-100 rounded-xl p-5">
+                            <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-700 mb-3 flex items-center gap-2">
+                              <FiCheckCircle className="w-4 h-4" />
+                              {t.selfTraining.solutionLabel}
+                            </h4>
+                            <ul className="space-y-3">
+                              {item.solution.map((line, index) => (
+                                <li
+                                  key={index}
+                                  className="text-sm text-gray-700 flex items-start gap-2 leading-relaxed"
+                                >
+                                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0" />
+                                  <span>{line}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
@@ -497,12 +668,30 @@ const SelfTraining = () => {
               })}
             </div>
 
+            {/* Submit */}
+            {!isSubmitted && (
+              <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
+                <button
+                  type="button"
+                  onClick={submitTrack}
+                  disabled={answeredCount < total}
+                  className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg font-semibold bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 shadow-md transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  <FiCheckCircle className="w-5 h-5" />
+                  {t.selfTraining.submitAnswers}
+                </button>
+                <span className="text-sm text-gray-500">
+                  {answeredCount < total
+                    ? t.selfTraining.submitHint
+                    : `${answeredCount}/${total} ${t.selfTraining.answeredLabel}`}
+                </span>
+              </div>
+            )}
+
             {/* Disclaimer */}
             <div className="mt-8 flex items-start gap-3 p-5 bg-amber-50 border border-amber-100 rounded-xl">
               <FiAlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
-              <p className="text-sm text-gray-700 leading-relaxed">
-                {t.selfTraining.disclaimer}
-              </p>
+              <p className="text-sm text-gray-700 leading-relaxed">{t.selfTraining.disclaimer}</p>
             </div>
           </div>
         </div>

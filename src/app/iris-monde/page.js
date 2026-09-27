@@ -18,6 +18,8 @@ import {
 } from 'react-icons/fi';
 import { useLanguage } from '@/context/LanguageContext';
 
+const FORM_ENDPOINT = 'https://formspree.io/f/mbglzejg';
+
 const IrisMonde = () => {
   const { t } = useLanguage();
   const [heroVisible, setHeroVisible] = useState(false);
@@ -73,14 +75,24 @@ const IrisMonde = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('sending');
-    setTimeout(() => {
+    try {
+      const response = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        throw new Error('Submission failed');
+      }
       setStatus('success');
       setFormData({ name: '', organisation: '', email: '', phone: '', subject: '', message: '' });
-      setTimeout(() => setStatus(''), 4000);
-    }, 1000);
+      setTimeout(() => setStatus(''), 5000);
+    } catch {
+      setStatus('error');
+    }
   };
 
   const pillarIcons = [FiFileText, FiTrendingUp, FiShield, FiTruck];
@@ -470,6 +482,21 @@ const IrisMonde = () => {
                     </>
                   )}
                 </button>
+
+                {status === 'success' && (
+                  <div className="p-3 bg-green-50 border border-green-200 rounded-lg">
+                    <p className="text-green-700 text-center text-sm flex items-center justify-center gap-2">
+                      <FiCheckCircle className="w-4 h-4" />
+                      {t.contact.success}
+                    </p>
+                  </div>
+                )}
+
+                {status === 'error' && (
+                  <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+                    <p className="text-red-700 text-center text-sm">{t.contact.error}</p>
+                  </div>
+                )}
               </form>
             </div>
           </div>
