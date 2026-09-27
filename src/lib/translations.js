@@ -363,7 +363,7 @@ const translations = {
             'Problem-solving mindset',
             'GitHub portfolio required'
           ]
-        }
+        },
         {
           title: 'Multiples Project Manager',
           department: 'Crypto',
@@ -493,7 +493,7 @@ const translations = {
       sendButton: 'Send Message',
       sending: 'Sending...',
       success: 'Message sent successfully! We will get back to you soon.',
-      error: 'Your message could not be sent. Please try again, or email us at info@al-r.com.',
+      error: 'Your message could not be sent. Please try again, or email us at irismonde1711@gmail.com.',
       quickNote: 'Quick Response:',
       quickNoteText: 'We typically respond within 24 hours during business days.',
     },
@@ -1074,7 +1074,7 @@ const translations = {
       sendButton: 'Envoyer le message',
       sending: 'Envoi...',
       success: 'Message envoyé avec succès ! Nous vous répondrons bientôt.',
-      error: 'Votre message n’a pas pu être envoyé. Veuillez réessayer ou nous écrire à info@al-r.com.',
+      error: 'Votre message n’a pas pu être envoyé. Veuillez réessayer ou nous écrire à irismonde1711@gmail.com.',
       quickNote: 'Réponse rapide :',
       quickNoteText: 'Nous répondons généralement sous 24 heures pendant les jours ouvrables.',
     },
