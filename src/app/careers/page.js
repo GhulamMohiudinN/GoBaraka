@@ -54,18 +54,21 @@ const Careers = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Icon/colour pairs are cycled, so the list follows the jobs data:
+  // add a role in translations.js and it appears here automatically.
   const jobAssets = [
-    { id: 1, icon: FiTruck, color: 'blue' },
-    { id: 2, icon: FiTruck, color: 'green' },
-    { id: 3, icon: FiGlobe, color: 'orange' },
-    { id: 4, icon: FiBarChart2, color: 'purple' },
-    { id: 5, icon: FiCode, color: 'cyan' },
-    { id: 6, icon: FiCpu, color: 'red' },
+    { icon: FiTruck, color: 'blue' },
+    { icon: FiTruck, color: 'green' },
+    { icon: FiGlobe, color: 'orange' },
+    { icon: FiBarChart2, color: 'purple' },
+    { icon: FiCode, color: 'cyan' },
+    { icon: FiCpu, color: 'red' },
   ];
 
-  const jobOpenings = jobAssets.map((asset, index) => ({
-    ...asset,
-    ...((t?.careers?.jobs && t.careers.jobs[index]) || {}),
+  const jobOpenings = (t?.careers?.jobs || []).map((job, index) => ({
+    id: index + 1,
+    ...jobAssets[index % jobAssets.length],
+    ...job,
   }));
 
   const careerCulture = t?.careers?.culturePoints || [];
