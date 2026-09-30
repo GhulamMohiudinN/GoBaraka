@@ -367,11 +367,11 @@ const translations = {
         {
           title: 'Multiples Project Manager',
           department: 'Crypto',
-          location: 'Onsite',
+          location: 'Onsite, Senegal',
           type: 'Full-time',
           salary: 'High',
           experience: '2+ years',
-          description: 'Build smart contracts, deploy blockchain solutions, and work on crypto innovation projects.',
+          description: 'Project Planning & Delivery, Financial & Budget Management, Governance, Risk & Compliance (GRC).',
           requirements: [
             'Strong knowledge of blockchain technology',
             'Experience with Solidity and Web3',
@@ -744,6 +744,22 @@ const translations = {
           salary: 'Élevé',
           experience: '2+ ans',
           description: 'Créez des contrats intelligents, déployez des solutions blockchain et travaillez sur des projets crypto innovants.',
+          requirements: [
+            'Solide connaissance de la blockchain',
+            'Expérience avec Solidity et Web3',
+            'Compréhension de la DeFi et des NFT',
+            'Esprit de résolution de problèmes',
+            'Portfolio GitHub requis'
+          ]
+        },
+        {
+          title: 'Chef de Projet — Postes Multiples',
+          department: 'Crypto',
+          location: 'Sur site, Sénégal',
+          type: 'Temps plein',
+          salary: 'Élevé',
+          experience: '2+ ans',
+          description: 'Planification et livraison de projets, gestion financière et budgétaire, gouvernance, risques et conformité (GRC).',
           requirements: [
             'Solide connaissance de la blockchain',
             'Expérience avec Solidity et Web3',
