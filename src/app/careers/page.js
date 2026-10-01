@@ -166,7 +166,9 @@ const Careers = () => {
             <div className="p-6">
               <div className="mb-6">
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">{t.careers.form.applyFor} {selectedRole?.title}</h2>
-                <p className="text-gray-600">{`${selectedRole?.department} • ${selectedRole?.location}`}</p>
+                <p className="text-gray-600">
+                  {[selectedRole?.department, selectedRole?.location].filter(Boolean).join(' • ')}
+                </p>
               </div>
 
               <form onSubmit={handleSubmitApplication} className="space-y-4">
@@ -393,7 +395,9 @@ const Careers = () => {
                           </div>
                           <div>
                             <h3 className="text-xl font-bold text-gray-900">{job.title}</h3>
-                            <p className="text-sm text-blue-600 font-medium">{job.department}</p>
+                            {job.department && (
+                              <p className="text-sm text-blue-600 font-medium">{job.department}</p>
+                            )}
                           </div>
                         </div>
                         
@@ -420,17 +424,19 @@ const Careers = () => {
                           </div>
                         </div>
                         
-                        <div className="mb-4">
-                          <h4 className="text-sm font-semibold text-gray-900 mb-2">{t.careers.keyRequirementsTitle}</h4>
-                          <ul className="space-y-1">
-                            {job.requirements.slice(0, 3).map((req, idx) => (
-                              <li key={idx} className="flex items-start gap-2 text-sm text-gray-600">
-                                <FiCheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                                <span>{req}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
+                        {job.requirements?.length > 0 && (
+                          <div className="mb-4">
+                            <h4 className="text-sm font-semibold text-gray-900 mb-2">{t.careers.keyRequirementsTitle}</h4>
+                            <ul className="space-y-1">
+                              {job.requirements.slice(0, 3).map((req, idx) => (
+                                <li key={idx} className="flex items-start gap-2 text-sm text-gray-600">
+                                  <FiCheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                                  <span>{req}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
                       </div>
                       
                       {/* Right side - Apply button */}

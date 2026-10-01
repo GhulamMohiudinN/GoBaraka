@@ -365,20 +365,12 @@ const translations = {
           ]
         },
         {
-          title: 'Multiples Project Manager',
-          department: 'Crypto',
+          title: 'Multiple Project Manager Roles',
           location: 'Onsite, Senegal',
           type: 'Full-time',
           salary: 'High',
           experience: '2+ years',
           description: 'Project Planning & Delivery, Financial & Budget Management, Governance, Risk & Compliance (GRC).',
-          requirements: [
-            'Strong knowledge of blockchain technology',
-            'Experience with Solidity and Web3',
-            'Understanding of DeFi and NFTs',
-            'Problem-solving mindset',
-            'GitHub portfolio required'
-          ]
         }
       ],
       culturePoints: [
@@ -753,20 +745,12 @@ const translations = {
           ]
         },
         {
-          title: 'Chef de Projet — Postes Multiples',
-          department: 'Crypto',
+          title: 'Postes multiples de chef de projet',
           location: 'Sur site, Sénégal',
           type: 'Temps plein',
           salary: 'Élevé',
           experience: '2+ ans',
           description: 'Planification et livraison de projets, gestion financière et budgétaire, gouvernance, risques et conformité (GRC).',
-          requirements: [
-            'Solide connaissance de la blockchain',
-            'Expérience avec Solidity et Web3',
-            'Compréhension de la DeFi et des NFT',
-            'Esprit de résolution de problèmes',
-            'Portfolio GitHub requis'
-          ]
         }
       ],
       culturePoints: [
